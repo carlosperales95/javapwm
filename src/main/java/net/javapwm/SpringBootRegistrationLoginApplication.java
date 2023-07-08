@@ -1,13 +1,13 @@
-package com.sapokodes.javapwm;
+package net.javapwm;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class JavapwmApplication {
+public class SpringBootRegistrationLoginApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(JavapwmApplication.class, args);
+		SpringApplication.run(SpringBootRegistrationLoginApplication.class, args);
 	}
 
 }
