@@ -1,10 +1,10 @@
-package net.javapwm;
+package jpwm;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class SpringBootRegistrationLoginApplicationTests {
+class TutorialApplicationTests {
 
 	@Test
 	void contextLoads() {
