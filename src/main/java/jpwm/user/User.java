@@ -3,6 +3,8 @@ package jpwm.user;
 import java.util.List;
 import java.util.Objects;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -23,6 +25,7 @@ public class User {
     private long id;
     
     @NotBlank
+    @Column(unique=true)
     private String username;
     @NotBlank
     private String password;
@@ -30,7 +33,7 @@ public class User {
     private boolean loggedIn;
 
     @JsonManagedReference
-    @OneToMany(mappedBy = "user")
+    @OneToMany(orphanRemoval = true, cascade = CascadeType.PERSIST, mappedBy = "user")
     private List<Credential> credentials;
 
     public User() {

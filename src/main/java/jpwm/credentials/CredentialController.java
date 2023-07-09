@@ -103,7 +103,9 @@ public class CredentialController {
         if (!userRepository.existsById(userId)) {
             throw new ResourceNotFoundException("Not found User with id = " + userId);
         }
-        else {credRepository.deleteById(id);}
+        else {
+            credRepository.deleteById(id);
+        }
 
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }

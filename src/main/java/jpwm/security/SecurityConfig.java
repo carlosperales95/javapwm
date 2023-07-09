@@ -17,7 +17,10 @@ public class SecurityConfig {
 
         http.csrf()
                 .disable()
-                .antMatcher("/users/**")
+                // .antMatcher("/users/**")
+                .requestMatchers()
+                .antMatchers("/users/**","/{userId}/credentials/**")
+                .and()
                 .authorizeRequests()
                 .anyRequest().authenticated()
                     .and()
