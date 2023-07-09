@@ -18,7 +18,7 @@ public class UserController {
     UserRepository userRepository;
 
     @CrossOrigin()
-    @PostMapping("/users/register")
+    @PostMapping("/register")
     public Status registerUser(@Valid @RequestBody User newUser) {
         List<User> users = userRepository.findAll();
 
@@ -34,7 +34,7 @@ public class UserController {
     }
 
     @CrossOrigin()
-    @PostMapping("/users/login")
+    @PostMapping("/login")
     public Status loginUser(@Valid @RequestBody User user) {
         List<User> users = userRepository.findAll();
 

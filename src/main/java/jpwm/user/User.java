@@ -1,20 +1,37 @@
 package jpwm.user;
 
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+import jpwm.credentials.Credential;
 
 @Entity
 @Table(name = "users")
 public class User {
-    private @Id @GeneratedValue long id;
-    private @NotBlank String username;
-    private @NotBlank String password;
-    private @NotBlank boolean loggedIn;
+    
+    @Id
+    @GeneratedValue
+    private long id;
+    
+    @NotBlank
+    private String username;
+    @NotBlank
+    private String password;
+    @NotBlank
+    private boolean loggedIn;
+
+    @JsonManagedReference
+    @OneToMany(mappedBy = "user")
+    private List<Credential> credentials;
 
     public User() {
     }
@@ -23,6 +40,8 @@ public class User {
         this.username = username;
         this.password = password;
         this.loggedIn = false;
+
+        this.credentials = null;
     }
 
     public long getId() {
@@ -53,6 +72,14 @@ public class User {
         this.loggedIn = loggedIn;
     }
 
+    public void addCredential(Credential cred) {
+        this.credentials.add(cred);
+    }
+
+    public List<Credential> getCredentials() {
+        return credentials;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -69,11 +96,12 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" +
+        return "User {" +
                 "id=" + id +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
-                ", loggedIn=" + loggedIn +
+                ", loggedIn=" + loggedIn + '\'' +
+                ", credentials=" + credentials.size() +
                 '}';
     }
 }
