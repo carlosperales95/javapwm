@@ -46,8 +46,8 @@ public class UserController {
 
         for (User other : users) {
             if (other.equals(user)) {
-                user.setLoggedIn(true);
-                userRepository.save(user);
+                other.setLoggedIn(true);
+                userRepository.save(other);
                 return Status.SUCCESS;
             }
         }
@@ -61,9 +61,9 @@ public class UserController {
         List<User> users = userRepository.findAll();
 
         for (User other : users) {
-            if (other.equals(user)) {
-                user.setLoggedIn(false);
-                userRepository.save(user);
+            if (other.equals(user) && other.isLoggedIn()) {
+                other.setLoggedIn(false);
+                userRepository.save(other);
                 return Status.SUCCESS;
             }
         }
